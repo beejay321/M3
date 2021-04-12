@@ -97,14 +97,14 @@ const sumOf3 = function () {
   }
   return sum;
 };
-console.log(sumOf3());
+// console.log(sumOf3());
 
 /*
 
 9)
 Create a function to test whether an array of integers of length 2 contains 1 or a 3. 
 */
-let arrayOfInt = [3, 3, 3, 3, 55, 67, 27, 9, 5, 88, 53, 78, 10, 67];
+let arrayOfInt = [3, 3, 3, 3, 505, 67, 27, 9, 5, 88, 53, 78, 10, 67];
 const ifContains = function () {
   for (let i = 0; i < arrayOfInt.length; i++) {
     if (arrayOfInt[i] === 3 || arrayOfInt[i] === 1) {
@@ -123,11 +123,32 @@ const ifNotContains = function () {
     }
   }
 };
-ifNotContains();
+// ifNotContains();
 
 /*11)
 
 Create a function to find the longest string from a given array of strings.*/
+let arrayOfStr = [
+  "find",
+  "the",
+  "longest",
+  "string",
+  "in",
+  "an",
+  "array",
+  "of",
+  "strings",
+];
+let longest = 0;
+
+const findLongest = function () {
+  for (let i = 0; i <= arrayOfStr[i].length; i++) {
+    // if (arrayOfStr[i].length > longest) {
+    //   longest = array[i];
+    // }
+  }
+};
+// findLongest();
 
 /*12)
 
@@ -139,13 +160,33 @@ Types of angles:
     btuse angle: An angle between 90 and 180 degrees.
     Straight angle: A 180 degree angle.*/
 
+const findTypAngle = function () {};
 /*13)
 
 Create a function to find the index of the greatest element of a given array of integers*/
+// let arrayOfInt = [3, 3, 3, 3, 55, 67, 27, 9, 5, 88, 53, 78, 10, 67];
+
+const findIndex = function () {
+  let greatestElem = 45;
+  console.log(arrayOfInt.indexOf(Math.max(...arrayOfInt)));
+};
+// findIndex();
 
 /*14)
 
 Create a function to get the largest even number from an array of integers.*/
+
+// let arrayOfInt = [3, 3, 3, 3, 505, 67, 27, 9, 5, 88, 53, 78, 10, 67];
+let largest = 0;
+const largestEven = function () {
+  for (let i = 0; i <= arrayOfInt.length; i++) {
+    if (largest < arrayOfInt[i]) {
+      largest = arrayOfInt[i];
+      console.log(largest);
+    }
+  }
+};
+largestEven();
 
 /*15)
 
@@ -179,3 +220,11 @@ this would be "34".*/
 Create a function that given a phrase returns its acronym, like British Broadcasting Corporation returns BBC
 
 */
+
+const acronym = function (phrase) {
+  let splitstr = phrase.split(" ");
+  for (let i = 0; i < splitstr.length; i++) {
+    splitstr[0] + splitstr[1] + splitstr[2];
+  }
+};
+acronym("British Broadcasting Corporation");
