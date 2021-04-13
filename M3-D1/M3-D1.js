@@ -34,10 +34,9 @@ const checkIf = function (givNum1, givNum2) {
 3)
 Create a function to remove a character at the specified position of a given string and return the new string.
 */
-// const remChar = function (givenString) {
-//   // let givenString = "a given String";
-//   givenString.slice(3);
-// };
+const remChar = function (givenString) {
+  console.log(givenString.slice(0, 5) + givenString.slice(6));
+};
 // remChar("a given String");
 /*
 
@@ -68,7 +67,12 @@ const checkRange = function (r1, r2) {
 
 Create a function to create a new string of specified copies (positive number) of a given string.
 */
-const createStr = function (givenStr) {};
+const createStr = function (givenStr, copy) {
+  for (let i = 0; i < copy; i++) {
+    console.log(givenStr.slice(1, 4));
+  }
+};
+// createStr("given string", 5);
 
 /*
 
@@ -81,9 +85,9 @@ const displayCity = function (city) {
     console.log(city);
   }
 };
-// displayCity("Los Angeles");
-// displayCity("New Jersey");
-// displayCity("Barcelona");
+//  displayCity("Los Angeles");
+//  displayCity("New Jersey");
+//  displayCity("Barcelona");
 
 /*
 8)
@@ -142,11 +146,10 @@ let arrayOfStr = [
 let longest = 0;
 
 const findLongest = function () {
-  for (let i = 0; i <= arrayOfStr[i].length; i++) {
-    // if (arrayOfStr[i].length > longest) {
-    //   longest = array[i];
-    // }
+  for (let i = 0; i < arrayOfStr.length; i++) {
+    if (arrayOfStr[i].length > longest) longest = arrayOfStr[i];
   }
+  return longest;
 };
 // findLongest();
 
@@ -160,17 +163,33 @@ Types of angles:
     btuse angle: An angle between 90 and 180 degrees.
     Straight angle: A 180 degree angle.*/
 
-const findTypAngle = function () {};
+const findTypAngle = function (angle) {
+  if (angle > 0 && angle < 90) {
+    result = "Acute angle";
+  } else if (angle === 90) {
+    result = "Right angle";
+  } else if (angle > 90 && angle < 180) {
+    result = "Obtuse angle";
+  } else if (angle === 180) {
+    result = "Straight angle";
+  }
+  return result;
+};
+// console.log(findTypAngle(67));
+
 /*13)
 
 Create a function to find the index of the greatest element of a given array of integers*/
-// let arrayOfInt = [3, 3, 3, 3, 55, 67, 27, 9, 5, 88, 53, 78, 10, 67];
-
+// let arrayOfInt = [3, 3, 3, 3, 505, 67, 27, 9, 5, 88, 53, 78, 10, 67];
+greatest = 0;
 const findIndex = function () {
-  let greatestElem = 45;
-  console.log(arrayOfInt.indexOf(Math.max(...arrayOfInt)));
+  for (let i = 0; i <= arrayOfInt.length; i++) {
+    if (greatest < arrayOfInt[i]) {
+      greatest = arrayOfInt[i];
+    }
+  }
 };
-// findIndex();
+findIndex();
 
 /*14)
 
@@ -186,20 +205,41 @@ const largestEven = function () {
     }
   }
 };
-largestEven();
+// largestEven();
 
 /*15)
 
 Create a function to check from two given integers, whether one is positive and another one is negative.*/
+const posOrNeg = function (par1, par2) {
+  if (par1 < 0 || par2 < 0) {
+    result = "one is negative";
+  } else if (par1 > 0 || par2 > 0) {
+    result = "one is positive";
+  }
+};
 
 /*16)
 
-Create a function to create new string with first 3 characters are in lower case and the others in upper case. If the string length is less than 3 convert all the characters in upper case. 
+Create a function to create new string with first 3 characters are in lower case and the others in upper case. 
+If the string length is less than 3 convert all the characters in upper case. 
 */
+const strUppCase = function (newStr) {
+  if (newStr.slice(0,2))
+};
 /*17)
 
 Create a function to calculate the sum of the two given integers, If the sum is in the range 50..80 return 65 other wise return 80.*/
 
+const sumOf2 = function (int1, int2) {
+  let summ = int1 + int2;
+  if (summ > 50 && summ < 80) {
+    result = 65;
+  } else {
+    result = 80;
+  }
+  return result;
+};
+// console.log(sumOf2(67, 5));
 /*18)
 
 Create a function to convert a number to a string, the contents of which depend on the number's factors. Follow next example:
@@ -216,15 +256,31 @@ this would be a "DiegoRiccardo".
 34 has four factors: 1, 2, 17, and 34.
 this would be "34".*/
 
+const convertToStr = function (numstr) {
+  if (numstr % 3 === 0) {
+    result = "Diego";
+  } else if (numstr % 5 === 0) {
+    result = "Riccardo";
+  } else if (numstr % 7 === 0) {
+    result = "Stefano";
+  } else {
+    result = numstr;
+  }
+  return result;
+};
+// console.log(convertToStr(84));
 /*19)
 Create a function that given a phrase returns its acronym, like British Broadcasting Corporation returns BBC
 
 */
 
-const acronym = function (phrase) {
+const retAcronym = function (phrase) {
+  let acronym = [];
   let splitstr = phrase.split(" ");
   for (let i = 0; i < splitstr.length; i++) {
     splitstr[0] + splitstr[1] + splitstr[2];
   }
 };
-acronym("British Broadcasting Corporation");
+// acronym("British Broadcasting Corporation");
+
+//
