@@ -11,9 +11,9 @@
 
     <p>Generate automatically 3 lists based on the "search API" response</p>
     <ul>
-      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem</li>
+      <!--   <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem</li>
       <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=metallica</li>
-      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth</li>
+      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth</li> -->
     </ul>
 
     <h3>
@@ -35,5 +35,81 @@
       Add a "Count Unique" button. When pressed, he should log the number of
       unique albums on the page
     </h4>
+    <script>
+      function genList1() {
+        fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "2e773b5325mshbc502447ee89a60p156bf1jsn9c1eb9324eab",
+            "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+          },
+        })
+          .then((eminemResp) => eminemResp.json()) //transform to json object
+          .then((songs) => {
+            let parent = document.querySelector("ul");
+            let li = document.createElement("li");
+            li.innerText = songs;
+            parent.appendChild(li);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+      genList1();
+      function genList2() {
+        fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=metallica", {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "2e773b5325mshbc502447ee89a60p156bf1jsn9c1eb9324eab",
+            "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+          },
+        })
+          .then((metallicaResp) => metallicaResp.json()) //transform to json object
+          .then((songs) => {
+            let parent = document.querySelector("ul");
+            let li = document.createElement("li");
+            li.innerText = songs;
+            parent.appendChild(li);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+      genList2();
+      function genList3() {
+        fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth", {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "2e773b5325mshbc502447ee89a60p156bf1jsn9c1eb9324eab",
+            "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+          },
+        })
+          .then((metallicaResp) => metallicaResp.json()) //transform to json object
+          .then((songs) => {
+            let parent = document.querySelector("ul");
+            let li = document.createElement("li");
+            li.innerText = songs;
+            parent.appendChild(li);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+      genList3();
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
