@@ -47,6 +47,66 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">BOOKS</span>
+    </nav>
+    <div class="container">
+      <div class="row"></div>
+    </div>
+
+    <ul></ul>
+    <script>
+      let books = [];
+
+      window.onload = function () {
+        fetch("https://striveschool-api.herokuapp.com/books")
+          .then((response) => response.json())
+          .then((books) => {
+            // book = books[i];
+            console.log(books);
+            console.log(books[0].img);
+            const bookRow = document.querySelector(".row");
+            bookRow.innerHTML = "";
+
+            //   books.forEach(book => bookRow.innerHTML += returnCard(book))
+
+            books.forEach(function (book) {
+              bookRow.innerHTML = `<div class="eachBook col col-md-4">
+             <img class = "img-fluid" height="150" src = ${book.img} alt="" />
+             <p> Title: ${book.title}
+             <br>Category: ${book.category}
+             <br>Price: ${book.price}
+             </p>
+             <button type="button" class="btn btn-primary" onclick="loadCart()">Add to Cart</button>
+             `;
+            });
+
+            /* for (let i = 0; i < books.length; i++) {
+              const book = books[i];
+              bookRow.innerHTML = `<div class="col">
+             <img class = "img-fluid" src = ${book.img}/>
+             <p> Title: ${book.title}
+             <br>Category: ${book.category}
+             <br>Price: ${book.price}
+             </p> `;
+            } */
+          });
+      };
+
+      const loadCart = function () {
+        let cartList = document.querySelector("ul");
+        let item = document.querySelectorAll(".eachBook");
+
+        // item.style.width = "50"
+        // item.setAttribute()
+
+        cartList.innerHTML = item ;
+      };
+      /* document.querySelector("button").addEventListener("click", function () {
+        console.log("button was pressed");
+      }); */
+    </script>
+
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
