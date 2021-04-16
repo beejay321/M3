@@ -57,7 +57,7 @@
     <ul></ul>
     <script>
       let books = [];
-
+      const bookRow = document.querySelector(".row");
       window.onload = function () {
         fetch("https://striveschool-api.herokuapp.com/books")
           .then((response) => response.json())
@@ -65,19 +65,28 @@
             // book = books[i];
             console.log(books);
             console.log(books[0].img);
-            const bookRow = document.querySelector(".row");
+            
             bookRow.innerHTML = "";
 
             //   books.forEach(book => bookRow.innerHTML += returnCard(book))
 
             books.forEach(function (book) {
-              bookRow.innerHTML = `<div class="eachBook col col-md-4">
-             <img class = "img-fluid" height="150" src = ${book.img} alt="" />
-             <p> Title: ${book.title}
+              bookRow.innerHTML += `<div class="eachBook col-7 col-md-4 col-lg-4 ">
+                <div class = "card " >
+             <img class = "img-fluid card-img-top" height = "100" src = ${
+               book.img
+             } alt="" />
+             <div class="card-body">
+             <p> Title: ${
+               book.title.length < 15
+                 ? `${book.title}`
+                 : `${book.title.slice(0, 25)}...`}             
              <br>Category: ${book.category}
-             <br>Price: ${book.price}
+             <br>Price: ${book.price}   
              </p>
-             <button type="button" class="btn btn-primary" onclick="loadCart()">Add to Cart</button>
+             <a href="#" class="btn btn-primary" onclick="loadCart()">Add to Cart</a>
+            </div>
+            </div>
              `;
             });
 
@@ -93,14 +102,17 @@
           });
       };
 
-      const loadCart = function () {
-        let cartList = document.querySelector("ul");
-        let item = document.querySelectorAll(".eachBook");
+      let cartList = [];
+      const loadCart = function (asin) {
+        
+        let item = 
 
         // item.style.width = "50"
         // item.setAttribute()
-
-        cartList.innerHTML = item ;
+        for (let i = 0; i < books.length; i++) {
+          const book = books[i];
+          cartList.push(item);
+        }
       };
       /* document.querySelector("button").addEventListener("click", function () {
         console.log("button was pressed");
