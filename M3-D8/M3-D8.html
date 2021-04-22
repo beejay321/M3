@@ -92,53 +92,38 @@
 
     <script>
       const itemList = document.querySelector("#itemDiv");
-      // console.log(itemList);
-      window.onload = async function () {
-        try {
-          const items = await loadItems();
-          displayItems(items);
-        } catch (error) {
-          // alert(error.message);
-        }
-      };
 
-      const loadItems = async () => {
+      window.onload = async () => {
         const response = await fetch(
           "https://striveschool-api.herokuapp.com/api/product/",
           {
             headers: {
+              "Content-Type": "application/json",
               Authorization:
                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMjEyYmIxZjBmYjAwMTVkOTE3OTkiLCJpYXQiOjE2MTkwMDk4MzUsImV4cCI6MTYyMDIxOTQzNX0.sjaCwExKLRwOY8S2I_evvMJ0RFmAb_2kU2aqNqyAakc",
             },
           }
         );
-        if (response.ok) {
-          const items = await response.json();
-          return items;
-        } else {
-          throw new Error("Failed to fetch items");
-        }
+        const items = await response.json();
 
-        function displayItems(items) {
-          itemList.innerHTML = "";
+        itemList.innerHTML = "";
 
-          console.log(items);
+        console.log(items);
 
-          for (let item of items) {
-            itemList.innerHTML += `  <div class="col-12 col-md-3 col-lg-4">
+        for (let item of items) {
+          itemList.innerHTML += `  <div class="col-12 col-md-3 col-lg-4">
           <div class="card">
-            
+            <img src="${item.imageUrl}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${item.name}</h5>
               <p class="card-text">${item.description}</p>
-              <p class="card-text">${item.price}</p>
-              <p class="card-text">${item.imageUrl}</p>
+              <p class="card-text">€${item.price}</p>
+              
               <a href="#" class="btn btn-primary">${item.brand}</a>
             </div>
           </div>
         </div>        
     `;
-          }
         }
       };
     </script>

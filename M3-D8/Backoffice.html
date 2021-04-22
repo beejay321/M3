@@ -90,7 +90,7 @@
         <div class="col-10 col-md-6 mx-auto">
           <h1 class="text-center my-5">Backoffice</h1>
 
-          <form onsubmit="handleSubmit(item)">
+          <form>
             <!-- 
                          {
                   "_id": "5d318e1a8541744830bef139", //SERVER GENERATED
@@ -134,8 +134,8 @@
             <label>Image Url</label>
             <input
               id="image"
-              type="text"
               class="form-control"
+              value="http://placehold.it/300x400"
               placeholder="Item Url"
             />
 
@@ -148,7 +148,11 @@
             />
 
             <div class="d-flex pt-3">
-              <input type="submit" class="btn btn-primary w-50 mx-auto" />
+              <!-- <input type="submit" class="btn btn-primary w-50 mx-auto" /> -->
+              <button type="reset" class="btn btn-secondary w-25">Reset</button>
+              <button type="submit" class="btn btn-primary w-25 mx-2">
+                Save
+              </button>
             </div>
           </form>
         </div>
@@ -156,14 +160,14 @@
     </div>
 
     <script>
-      async function handleSubmit(item) {
-        item.preventDefault();
+      const formOnSave = async (e) => {
+        e.preventDefault();
 
         const newItem = {
           name: document.querySelector("#name").value,
           description: document.querySelector("#description").value,
           brand: document.querySelector("#brand").value,
-          image: document.querySelector("#image").value,
+          imageUrl: document.querySelector("#image").value,
           price: document.querySelector("#price").value,
         };
 
@@ -177,7 +181,7 @@
               headers: {
                 Authorization:
                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMjEyYmIxZjBmYjAwMTVkOTE3OTkiLCJpYXQiOjE2MTkwMDk4MzUsImV4cCI6MTYyMDIxOTQzNX0.sjaCwExKLRwOY8S2I_evvMJ0RFmAb_2kU2aqNqyAakc",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
               },
               body: JSON.stringify(newItem),
             }
@@ -189,7 +193,12 @@
         } catch (error) {
           alert(error.message);
         }
-      }
+      };
+
+      window.onload = function () {
+        const form = document.querySelector("form");
+        form.onsubmit = formOnSave;
+      };
     </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
