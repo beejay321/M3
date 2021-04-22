@@ -165,9 +165,9 @@
               <button
                 type="button"
                 id="delete-btn"
-                onclick="deleteEvent()"
-                class="btn btn-danger mx-auto"
+                class="d-none btn btn-danger mx-auto"
               >
+                <!-- onclick="deleteEvent()" -->
                 <i class="bi bi-trash"></i>
               </button>
             </div>
@@ -180,7 +180,7 @@
       const params = new URLSearchParams(location.search);
       const id = params.get("id");
 
-      window.onload = async () => {
+      async function init() {
         console.log(id);
         if (id) {
           operation.innerHTML = "Edit an Item";
@@ -197,8 +197,9 @@
                 },
               }
             );
-            if (!response.ok) {
-              if (response.status === 404) {
+            /*  if (!response.ok) {
+              const item = await response.json();
+              /* if (response.status === 404) {
                 location.assign("M3.D9.html");
                 throw new Error("This item does not exist!");
                 // go to catch block
@@ -206,11 +207,11 @@
               throw new Error(
                 "Something went wrong with code " + response.status
               );
-              // go to catch block
-            }
+              // go to catch block }*/
 
             const item = await response.json();
-            populateFields(item);
+            console.log(item);
+            inputFields(item);
           } catch (error) {
             console.log(error);
             alert(error.message);
@@ -221,8 +222,8 @@
         } else {
           operation.innerHTML = "Create a new Item";
         }
-      };
-      function populateFields(event) {
+      }
+      function inputFields(item) {
         document.querySelector("#name").value = item.name;
         document.querySelector("#description").value = item.description;
         document.querySelector("#brand").value = item.brand;
@@ -311,17 +312,27 @@
         setLoading(false);
       }
 
-      function setLoading(loading) {
+      /* function setLoading(loading) {
         if (loading) {
           document.querySelector("#spinner").classList.remove("d-none");
         } else {
           document.querySelector("#spinner").classList.add("d-none");
         }
       }
-
-      window.onload = function () {
+ */
+      function createForm() {
         const form = document.querySelector("form");
         form.onsubmit = formOnSave;
+      }
+      function createDelete() {
+        const delBtn = document.querySelector("#delete-btn");
+        delBtn.onclick = deleteEvent;
+      }
+
+      window.onload = () => {
+        createDelete();
+        createForm();
+        init();
       };
     </script>
 
