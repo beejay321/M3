@@ -128,7 +128,21 @@
            
 
 
-        <div class="container-fluid" id="categories" >            
+        <div class="container-fluid" id="categories" > 
+          <div class=" movies row">
+
+          </div>           
+        </div>
+
+
+
+
+        <h4 class="text-white mb-3">Trending Now</h4>
+        <div class="row no-gutters text-center mb-4">
+            
+            <div class="col col-12 col-md-6 col-lg-2 pr-1 mb-1">
+                <img class="img-fluid" src="http://placehold.it/300x160" alt="Netflix movie" />
+            </div>
             
         </div>
                            
@@ -227,36 +241,10 @@
             </div>
         </footer>
 
-        <script>
-
-         
-            /* window.onload = async () => {
-            // const loadMovies = async() => {    
-        const response = await fetch("https://striveschool-api.herokuapp.com/api/movies/query", {
-            headers: {
-                
-                Authorization:
-                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMjEyYmIxZjBmYjAwMTVkOTE3OTkiLCJpYXQiOjE2MTkwMDk4MzUsImV4cCI6MTYyMDIxOTQzNX0.sjaCwExKLRwOY8S2I_evvMJ0RFmAb_2kU2aqNqyAakc",
-              },
-}
-
-        );
-        const categories = await response.json();
-
-        console.log(categories);
-        const categoryList = document.querySelector("#categories")
-        const movieDiv = document.querySelector("#movies + div")
-
-         categoryList.innerHTML = "";
-
-
-        for (let category of categories) {
-          categoryList.innerHTML += `<div><h4 id="movies" class="row text-white mb-3">${category}</h4></div>`;
-        } 
-      }; */
+        <script>    
 
       window.onload = async () => {
-            // const loadMovies = async() => {    
+               
         const response = await fetch("https://striveschool-api.herokuapp.com/api/movies/", {
             headers: {                
                 Authorization:
@@ -275,8 +263,20 @@
         }    */  
          
          categories.forEach(category => { 
-             const categoryList = document.querySelector("#categories") 
-            categoryList.innerHTML += `<h4  class=" row text-white mb-3">${category}</h4>`
+
+          const categoryList = document.querySelector("#categories") 
+            categoryList.innerHTML += `<h4  class=" row text-white mb-3">${category}</h4>
+            <div class="row no-gutters text-center mb-4">            
+            <div class="col col-12 col-md-6 col-lg-2 pr-1 mb-1">
+                <img class="img-fluid" src="http://placehold.it/300x160" alt="Netflix movie" />
+                
+            </div>
+            
+        </div>`
+        /* <a href="detail.html?id=${movie._id}" class="btn btn-secondary"
+      >Detail</a> */
+             
+            let collections = []
              fetch("https://striveschool-api.herokuapp.com/api/movies/" + category, {
                  headers: {                
                      Authorization:
@@ -285,17 +285,20 @@
                 })
                 .then((response) => response.json())
                 .then((movies) => {
-                    console.log(movies)  
+                    console.log(movies)
+                    
                    
-                    const movieDiv = document.querySelector(".movies ")
-                    movies.forEach(movie => {
+                  /*   const movieDiv = document.querySelector(".movies ")
+                     movies.forEach(movie => {
 
                         movieDiv.innerHTML += `           
                            <div class="col col-12 col-md-6 col-lg-2 pr-1 mb-1">
                            <img class="img-fluid" src="${movie.imageUrl}" alt="Netflix movie" />
                            </div>`;           
-                    })                
-            });
+                    })  */               
+            });         
+            
+            
         }
          )}
 
@@ -312,28 +315,8 @@
             </div>
          </div>
           */
-    
-
-
-
-      
-
-
-
-
         </script>
-      <!--   
-            <div  class=" ml-4 mt-4">
-                <div id="categories" >
-                    <h5  class="row text-white mb-3" >Movies</h5>
-                    <div id="movies" class="row no-gutters text-center mb-4">            
-                       <div class="col col-12 col-md-6 col-lg-2 pr-1 mb-1">
-                       <img class="img-fluid" src="http://placehold.it/300x160" alt="Netflix movie" />
-                       </div>            
-                    </div>
-               </div>
-            </div >
- -->
+    
 
         <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
